@@ -19,16 +19,27 @@ import {
 import { CountdownCircleTimer } from 'react-countdown-circle-timer';
 
 const ExercisesModal = ({ onClose }) => {
-  const [start, setStart] = useState(true);
+  const [start, setStart] = useState(false);
   const [time, setTime] = useState('');
-  console.log('jjjjjjjjjj');
-  useEffect(() => {
-    console.log(start);
-  }, [start, time]);
+  const [restart, setReStart] = useState(false);
 
-  const toStartTimer = () => {
-    setStart((prevStart) => !prevStart);
-  };
+  useEffect(() => {
+    console.log('11111111');
+    if (time === '' && start === false) {
+      console.log('222222222222');
+      return;
+    }
+
+    if (time === '' && restart === true) {
+      console.log('333333333');
+      setStart(false);
+      setReStart(false);
+      return;
+    }
+    console.log('bbbbbbbbbb');
+    return;
+  }, [restart, start, time]);
+
   const toCloseWindiw = () => {
     onClose();
   };
@@ -37,9 +48,29 @@ const ExercisesModal = ({ onClose }) => {
     const minutes = Math.floor(remainingTime / 60);
     const seconds = remainingTime % 60;
     const res = `${minutes}:${seconds}`;
-    setTime(res);
 
+    if (time === '0:0') {
+      console.log('5555555555');
+      setTime('');
+      setReStart(true);
+
+      return;
+    }
+    // if (res === '0:0' && time === '') {
+    //   console.log('88888888');
+
+    //   setReStart(false);
+    //   return;
+    // }
+
+    console.log('666666666');
+    setTime(res);
     return res;
+  };
+  const toStartTimer = () => {
+    console.log('44444444444');
+    // setReStart(false);
+    setStart((prevStart) => !prevStart);
   };
 
   return (
@@ -55,15 +86,13 @@ const ExercisesModal = ({ onClose }) => {
               colors="#e6533c"
               size={124}
               strokeWidth={4}
+              shouldRepeat={true}
+              rotation="anticlockwise"
+              strokeLinecap="round"
               trailStrokeWidth={6}
               trailColor="rgba(239, 237, 232, 0.05)"
               onComplete={() => {
-                console.log('hhhhhhh');
-                if (start) {
-                  return [true];
-                }
-
-                return [false];
+                return { shouldRepeat: true, delay: 0 };
               }}
             >
               {renderTime}
