@@ -1,4 +1,5 @@
 import ExercisesModal from './ExercisesModal';
+import ExercisesWellDoneModal from './ExercisesWellDoneModal';
 import FormModal from './FormModal';
 
 const Modal = ({ onClose }) => {
@@ -8,6 +9,7 @@ const Modal = ({ onClose }) => {
   return (
     <div>
       <ExercisesModal onClose={onClose} />
+      {/* <ExercisesWellDoneModal onClose={onClose} /> */}
       {/* <FormModal onClose={onClose} /> */}
       {/* {showWellDoneModal && <WellDoneModal Calories={getCalories} />} */}
     </div>

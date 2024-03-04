@@ -25,6 +25,13 @@ const FormModal = ({ onClose }) => {
   const [getFormModal, setFormModal] = useState(true);
   const [getCalories, setCalories] = useState('');
 
+  document.addEventListener('keydown', function (e) {
+    console.log(e);
+    if (e.key === 'Escape') {
+      onClose();
+    }
+  });
+
   // useEffect(() => {
   //   console.log('Calories changed:', getCalories);
   // }, [getCalories]);
