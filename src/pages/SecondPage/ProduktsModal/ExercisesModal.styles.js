@@ -15,11 +15,22 @@ export const ExercisesModalBackground = styled.div`
 export const ExercisesModalContainer = styled.div`
   border: 1px solid rgba(239, 237, 232, 0.2);
   border-radius: 12px;
-  width: 335px;
-  height: 788px;
+
   background: #10100f;
   margin: 15% auto;
-  padding: 48px 16px;
+
+  @media screen and (min-width: 375px) {
+    width: 335px;
+    height: 788px;
+    padding: 48px 16px;
+  }
+  @media screen and (min-width: 768px) {
+    width: 694px;
+    height: 550px;
+    padding: 48px 32px;
+    display: flex;
+    gap: 16px;
+  }
 `;
 export const TimerDiv = styled.div`
   display: flex;
@@ -61,7 +72,13 @@ export const BurnedCalories = styled.p`
   font-weight: 400;
   font-size: 14px;
   color: rgba(239, 237, 232, 0.3);
-  margin-bottom: 40px;
+
+  @media screen and (min-width: 375px) {
+    margin-bottom: 40px;
+  }
+  @media screen and (min-width: 768px) {
+    margin-bottom: 0px;
+  }
 `;
 export const TimeSpan = styled.span`
   font-weight: 400;
@@ -69,20 +86,33 @@ export const TimeSpan = styled.span`
   color: #e6533c;
 `;
 export const DataContainerDiv = styled.div`
-  width: 302px;
   display: flex;
   flex-direction: column;
+  @media screen and (min-width: 375px) {
+    width: 302px;
+  }
+  @media screen and (min-width: 768px) {
+    width: 345px;
+  }
 `;
 
 export const DataDiv = styled.div`
-  width: 302px;
-  height: 132px;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   background: #10100f;
   gap: 8px;
-  margin-bottom: 24px;
+
+  @media screen and (min-width: 375px) {
+    width: 302px;
+    height: 132px;
+    margin-bottom: 24px;
+  }
+  @media screen and (min-width: 768px) {
+    width: 345px;
+    height: 148px;
+    margin-bottom: 258px;
+  }
 `;
 
 export const ExercisesBlock = styled.div`
@@ -92,6 +122,14 @@ export const ExercisesBlock = styled.div`
   width: 147px;
   height: 62px;
   background: rgba(239, 237, 232, 0.05);
+  @media screen and (min-width: 375px) {
+    width: 147px;
+    height: 62px;
+  }
+  @media screen and (min-width: 768px) {
+    width: 169px;
+    height: 70px;
+  }
 `;
 
 export const ExercisesBlockText = styled.p`
@@ -115,4 +153,7 @@ export const ExercisesBlockButton = styled.button`
   font-weight: 500;
   font-size: 16px;
   color: #efede8;
+  @media screen and (min-width: 768px) {
+    margin-left: auto;
+  }
 `;

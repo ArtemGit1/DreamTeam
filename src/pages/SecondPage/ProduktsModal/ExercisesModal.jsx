@@ -19,27 +19,37 @@ import {
 import { CountdownCircleTimer } from 'react-countdown-circle-timer';
 import ExercisesWellDoneModal from './ExercisesWellDoneModal';
 
-const ExercisesModal = ({ onClose }) => {
+const ExercisesModal = ({ onClose, durationValue }) => {
   const [start, setStart] = useState(false);
   const [time, setTime] = useState('');
   const [restart, setReStart] = useState(false);
   const [closeModal, setcloseModal] = useState(false);
+  const [counter, setCounter] = useState(0);
+  const [intervalId, setIntervalId] = useState(null);
 
   document.addEventListener('keydown', function (e) {
-    console.log(e);
     if (e.key === 'Escape') {
       onClose();
     }
   });
 
+  const incrementCounter = () => {
+    setCounter((prevCounter) => prevCounter + 1);
+  };
+
   useEffect(() => {
     console.log('11111111');
-
-    if (time === '' && start === false) {
-      console.log('222222222222');
-      return;
+    if (start) {
+      console.log('xxxxxxxxx');
+      const id = setInterval(() => {
+        incrementCounter();
+      }, 1000);
+      console.log(id);
+      setIntervalId(id);
+    } else {
+      console.log('kkkkkkkkk');
+      clearInterval(intervalId);
     }
-
     if (time === '' && restart === true) {
       console.log('333333333');
       setStart(false);
@@ -47,18 +57,20 @@ const ExercisesModal = ({ onClose }) => {
       return;
     }
     console.log('bbbbbbbbbb');
-    return;
-  }, [restart, start, time]);
 
-  // const toCloseWindiw = () => {
-  //   onClose();
-  // };
+    return () => clearInterval(intervalId);
+  }, [intervalId, restart, start, time]);
+
+  const toCloseWindiw = () => {
+    setcloseModal(true);
+  };
 
   const renderTime = ({ remainingTime }) => {
     const minutes = Math.floor(remainingTime / 60);
     const seconds = remainingTime % 60;
     const res = `${minutes}:${seconds}`;
 
+    console.log(res);
     if (time === '0:0') {
       console.log('5555555555');
       setTime('');
@@ -66,32 +78,21 @@ const ExercisesModal = ({ onClose }) => {
 
       return;
     }
-    // if (res === '0:0' && time === '') {
-    //   console.log('88888888');
-
-    //   setReStart(false);
-    //   return;
-    // }
 
     console.log('666666666');
     setTime(res);
+
     return res;
   };
   const toStartTimer = () => {
     console.log('44444444444');
-    // setReStart(false);
+
     setStart((prevStart) => !prevStart);
   };
   const handleBackgroundClick = (event) => {
-    console.log(event);
-
     if (event.target === event.currentTarget || event.key === 'Escape') {
-      // onClose();
+      onClose();
     }
-  };
-
-  const click = () => {
-    setcloseModal(true);
   };
 
   return (
@@ -105,7 +106,7 @@ const ExercisesModal = ({ onClose }) => {
               <ExercisesModalGif>
                 <CountdownCircleTimer
                   isPlaying={start}
-                  duration={5}
+                  duration={durationValue}
                   colors="#e6533c"
                   size={124}
                   strokeWidth={4}
@@ -119,7 +120,6 @@ const ExercisesModal = ({ onClose }) => {
                   }}
                 >
                   {renderTime}
-                  {/* {({ remainingTime }) => remainingTime} */}
                 </CountdownCircleTimer>
               </ExercisesModalGif>
               <PlayPause onClick={toStartTimer}>
@@ -127,7 +127,7 @@ const ExercisesModal = ({ onClose }) => {
                 <svg width="32" height="32"></svg>
               </PlayPause>
               <BurnedCalories>
-                Burned calories: <TimeSpan>{time}</TimeSpan>
+                Burned calories: <TimeSpan>{counter}</TimeSpan>
               </BurnedCalories>
             </TimerDiv>
             <DataContainerDiv>
@@ -149,7 +149,7 @@ const ExercisesModal = ({ onClose }) => {
                   <ExercisesBlockResalts>Body weight</ExercisesBlockResalts>
                 </ExercisesBlock>
               </DataDiv>
-              <ExercisesBlockButton onClick={click}>
+              <ExercisesBlockButton onClick={toCloseWindiw}>
                 Add to diary
               </ExercisesBlockButton>
             </DataContainerDiv>

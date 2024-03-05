@@ -8,7 +8,7 @@ const Modal = ({ onClose }) => {
   //   console.log('moooodallllllll');
   return (
     <div>
-      <ExercisesModal onClose={onClose} />
+      <ExercisesModal onClose={onClose} durationValue={6} />
       {/* <ExercisesWellDoneModal onClose={onClose} /> */}
       {/* <FormModal onClose={onClose} /> */}
       {/* {showWellDoneModal && <WellDoneModal Calories={getCalories} />} */}

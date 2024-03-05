@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 export const ExercisesWellDoneBackground = styled.div`
   /* display: none; */
   position: fixed;
@@ -13,17 +14,32 @@ export const ExercisesWellDoneBackground = styled.div`
 export const ExercisesWellDoneContainer = styled.div`
   border: 1px solid rgba(239, 237, 232, 0.2);
   border-radius: 12px;
-  width: 335px;
-  height: 384px;
+  /* width: 335px;
+  height: 384px; */
   background: #10100f;
   margin: 15% auto;
+  @media screen and (min-width: 375px) {
+    width: 335px;
+    height: 384px;
+  }
+  @media screen and (min-width: 768px) {
+    width: 694px;
+    height: 550px;
+  }
 `;
 export const InnerExercisesWellDoneContainer = styled.div`
-  padding: 48px 89px;
-  display: flex;
-  flex-direction: column;
-  /* gap: 16px; */
-  align-items: center;
+  @media screen and (min-width: 375px) {
+    padding: 48px 89px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  @media screen and (min-width: 768px) {
+    padding: 59px 199px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 export const ExercisesWellDoneImg = styled.img`
   width: 117px;
